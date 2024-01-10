@@ -14,7 +14,7 @@ const app = express()
 const SecretKey = 'sdskfjaldsfjdsfjdskdslafa';
 const verifyToken = require("./verifyToken");
 app.use(cors({
-  origin: ["http://localhost:3000"],
+  origin: ["https://estorerguktbasar.onrender.com/"],
   method: ["GET", "POST"],
   credentials: true,
 }))
