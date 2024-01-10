@@ -14,7 +14,8 @@ const app = express()
 const SecretKey = 'sdskfjaldsfjdsfjdskdslafa';
 const verifyToken = require("./verifyToken");
 app.use(cors({
-  origin: ["https://estorerguktb.netlify.app"],
+  origin: ["
+  origin: ["http://localhost:3000"],
   method: ["GET", "POST"],
   credentials: true,
 }))
