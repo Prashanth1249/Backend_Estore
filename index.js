@@ -12,7 +12,7 @@ const fs = require("fs");
 const path = require("path");
 const app = express()
 const SecretKey = 'sdskfjaldsfjdsfjdskdslafa';
-const verifyToken = require("../Backend/verifyToken");
+const verifyToken = require("./verifyToken");
 app.use(cors({
   origin: ["http://localhost:3000"],
   method: ["GET", "POST"],
