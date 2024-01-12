@@ -18,9 +18,11 @@ app.use(cors({
   method: ["GET", "POST"],
   credentials: true,
 }))
+
 const staticPath = path.join(__dirname, "./public/");
 console.log(staticPath);
-app.use(express.static(staticPath));
+app.use(express.static(staticPath, { index: false }));
+
 
 app.use(cookieParser());
 app.use(bodyParser.json());
