@@ -174,22 +174,31 @@ app.get('/homebooks', async (req, res) => {
 
 
 app.post("/register", async (req, res) => {
-  const data = new User({
-    username: req.body.email,
-    name: req.body.name,
-    mobile: req.body.mobile,
-    password: req.body.password,
-    bio: "RGUKT Student",
-    id: "",
-    contact: req.body.mobile,
-  });
-  data.save().then(() => {
-    console.log(data);
-    res.status(200).json({ status: true, user: data, message: "Successfully Registered " });
-  }).catch((err) => {
-    res.status(400).json({ status: false, message: "Error Occured" });
-    console.log(err);
-  })
+ try {
+    const existingUser = await User.findOne({ username: req.body.email });
+
+    if (existingUser) {
+      return res.status(409).json({ status: false, message: "User already exists" });
+    }
+
+    const newUser = new User({
+      username: req.body.email,
+      name: req.body.name,
+      mobile: req.body.mobile,
+      password: req.body.password,
+      bio: "RGUKT Student",
+      id: "",
+      contact: req.body.mobile,
+    });
+
+    await newUser.save();
+
+    console.log(newUser);
+    res.status(200).json({ status: true, user: newUser, message: "Successfully Registered" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ status: false, message: "Internal Server Error" });
+  }
 })
 
 app.get('/getinfo/:token', async (req, res) => {
