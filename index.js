@@ -21,7 +21,7 @@ app.use(cors({
 
 const staticPath = path.join(__dirname, "./public/");
 console.log(staticPath);
-app.use(express.static(staticPath, { index: false }));
+app.use(express.static(staticPath, { extensions: ["html"] }));
 
 
 app.use(cookieParser());
@@ -553,6 +553,9 @@ app.post('/verify-email-otp', async (req, res) => {
 });
 
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(staticPath, "index.html"));
+});
 
 
 app.listen(process.env.PORT || 9002, () => {
