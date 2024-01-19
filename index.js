@@ -553,9 +553,6 @@ app.post('/verify-email-otp', async (req, res) => {
 });
 
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(staticPath, "index.html"));
-});
 
 
 app.listen(process.env.PORT || 9002, () => {
