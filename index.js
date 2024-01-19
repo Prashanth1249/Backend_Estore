@@ -20,7 +20,7 @@ app.use(cors({
 }))
 
 const staticPath = path.join(__dirname, "./public/");
-console.log(staticPath);
+console.log("it is the static path+"staticPath);
 app.use(express.static(staticPath, { extensions: ["html"] }));
 
 
